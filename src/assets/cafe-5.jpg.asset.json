@@ -1,11 +1,11 @@
 {
-  "asset_id": "c0332627-08e0-4083-be00-7817c61d20d6",
-  "content_type": "image/jpeg",
-  "created_at": "2026-09-07T12:35:05Z",
-  "original_filename": "cafe-5.jpg",
+  "version": 1,
+  "asset_id": "6c0e6738-46d7-40e9-9046-23e57ae5b6b4",
   "project_id": "c0051b08-49d6-4f57-b1c0-10e592d18e8e",
-  "r2_key": "a/v1/c0051b08-49d6-4f57-b1c0-10e592d18e8e/c0332627-08e0-4083-be00-7817c61d20d6/cafe-5.jpg",
+  "url": "/__l5e/assets-v1/6c0e6738-46d7-40e9-9046-23e57ae5b6b4/cafe-5.jpg",
+  "r2_key": "a/v1/c0051b08-49d6-4f57-b1c0-10e592d18e8e/6c0e6738-46d7-40e9-9046-23e57ae5b6b4/cafe-5.jpg",
+  "original_filename": "cafe-5.jpg",
   "size": 241963,
-  "url": "/__l5e/assets-v1/c0332627-08e0-4083-be00-7817c61d20d6/cafe-5.jpg",
-  "version": 1
+  "content_type": "image/jpeg",
+  "created_at": "2026-09-07T15:02:03Z"
 }
