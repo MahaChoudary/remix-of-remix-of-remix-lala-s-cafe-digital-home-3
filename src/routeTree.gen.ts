@@ -15,8 +15,10 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as OffersRouteImport } from './routes/offers'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as StoryRouteImport } from './routes/story'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as VisitRouteImport } from './routes/visit'
 
 const IndexRoute = IndexRouteImport.update({
@@ -49,6 +51,11 @@ const OffersRoute = OffersRouteImport.update({
   path: '/offers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReservationsRoute = ReservationsRouteImport.update({
   id: '/reservations',
   path: '/reservations',
@@ -57,6 +64,11 @@ const ReservationsRoute = ReservationsRouteImport.update({
 const StoryRoute = StoryRouteImport.update({
   id: '/story',
   path: '/story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VisitRoute = VisitRouteImport.update({
@@ -72,8 +84,10 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
+  '/privacy': typeof PrivacyRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
+  '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
 }
 export interface FileRoutesByTo {
@@ -83,8 +97,10 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
+  '/privacy': typeof PrivacyRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
+  '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
 }
 export interface FileRoutesById {
@@ -95,8 +111,10 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
+  '/privacy': typeof PrivacyRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
+  '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
 }
 export interface FileRouteTypes {
@@ -108,8 +126,10 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/menu'
     | '/offers'
+    | '/privacy'
     | '/reservations'
     | '/story'
+    | '/terms'
     | '/visit'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,8 +139,10 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/menu'
     | '/offers'
+    | '/privacy'
     | '/reservations'
     | '/story'
+    | '/terms'
     | '/visit'
   id:
     | '__root__'
@@ -130,8 +152,10 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/menu'
     | '/offers'
+    | '/privacy'
     | '/reservations'
     | '/story'
+    | '/terms'
     | '/visit'
   fileRoutesById: FileRoutesById
 }
@@ -142,8 +166,10 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   MenuRoute: typeof MenuRoute
   OffersRoute: typeof OffersRoute
+  PrivacyRoute: typeof PrivacyRoute
   ReservationsRoute: typeof ReservationsRoute
   StoryRoute: typeof StoryRoute
+  TermsRoute: typeof TermsRoute
   VisitRoute: typeof VisitRoute
 }
 
@@ -191,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OffersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reservations': {
       id: '/reservations'
       path: '/reservations'
@@ -203,6 +236,13 @@ declare module '@tanstack/react-router' {
       path: '/story'
       fullPath: '/story'
       preLoaderRoute: typeof StoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/visit': {
@@ -222,8 +262,10 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   MenuRoute: MenuRoute,
   OffersRoute: OffersRoute,
+  PrivacyRoute: PrivacyRoute,
   ReservationsRoute: ReservationsRoute,
   StoryRoute: StoryRoute,
+  TermsRoute: TermsRoute,
   VisitRoute: VisitRoute,
 }
 export const routeTree = rootRouteImport
