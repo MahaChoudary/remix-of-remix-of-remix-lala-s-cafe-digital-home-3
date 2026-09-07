@@ -291,3 +291,74 @@ export const offers: Offer[] = [
     isActive: true,
   },
 ];
+
+export interface Faq {
+  id: string;
+  question: string;
+  answer: string;
+  sortOrder: number;
+}
+
+/** Answers drawn only from what the cafe has confirmed. */
+export const faqs: Faq[] = [
+  {
+    id: "faq-where",
+    question: "Where exactly is Lala's Cafe?",
+    answer:
+      "Nisbat Road in Daska, right next to Just Smile Family Dental Clinic. Look for the lit entrance with the vine-covered ceiling.",
+    sortOrder: 1,
+  },
+  {
+    id: "faq-hours",
+    question: "What time are you open?",
+    answer: siteSettings.hours.map((h) => `${h.label}: ${h.value}`).join(" · "),
+    sortOrder: 2,
+  },
+  {
+    id: "faq-booking",
+    question: "Do I need to book a table?",
+    answer:
+      "Walk-ins are welcome. For weekends, larger groups or a specific spot such as a cabana or the rooftop, send a table request and we'll confirm it with you.",
+    sortOrder: 3,
+  },
+  {
+    id: "faq-confirm",
+    question: "Is my table request confirmed straight away?",
+    answer:
+      "No. A request reaches the team and someone replies to confirm it. Until you hear back, the table isn't held.",
+    sortOrder: 4,
+  },
+  {
+    id: "faq-delivery",
+    question: "Do you deliver?",
+    answer: `Yes — free home delivery around Daska. Call ${orderPhones.join(" or ")} to place an order.`,
+    sortOrder: 5,
+  },
+  {
+    id: "faq-seating",
+    question: "What seating is there?",
+    answer:
+      "Indoor lounge booths, private cabanas, a courtyard pergola, the star-light terrace and the helicopter booth. Tell us which you'd like when you request a table.",
+    sortOrder: 6,
+  },
+  {
+    id: "faq-groups",
+    question: "Can you host a birthday or a private gathering?",
+    answer:
+      "Yes. Send a private-event enquiry with your date, guest count and what you have in mind, and the team will work out the details with you directly.",
+    sortOrder: 7,
+  },
+  {
+    id: "faq-allergy",
+    question: "I have an allergy — can you help?",
+    answer:
+      "Tell us before you order. Our kitchen prepares dishes side by side so we can't promise a dish is free of any ingredient, but we'll always tell you honestly what we can do.",
+    sortOrder: 8,
+  },
+  {
+    id: "faq-complaint",
+    question: "Something went wrong. Who do I speak to?",
+    answer: `Call the complaints line on ${complaintPhone} and it goes straight to management.`,
+    sortOrder: 9,
+  },
+];

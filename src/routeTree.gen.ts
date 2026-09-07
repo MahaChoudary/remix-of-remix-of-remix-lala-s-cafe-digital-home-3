@@ -10,18 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as MoodMenuRouteImport } from './routes/mood-menu'
 import { Route as OffersRouteImport } from './routes/offers'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PrivateEventsRouteImport } from './routes/private-events'
 import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as StoryRouteImport } from './routes/story'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as VisitRouteImport } from './routes/visit'
+import { Route as WhatShouldIOrderRouteImport } from './routes/what-should-i-order'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventsRoute = EventsRouteImport.update({
@@ -34,6 +46,11 @@ const ExperienceRoute = ExperienceRouteImport.update({
   path: '/experience',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -44,9 +61,24 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoodMenuRoute = MoodMenuRouteImport.update({
+  id: '/mood-menu',
+  path: '/mood-menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OffersRoute = OffersRouteImport.update({
   id: '/offers',
   path: '/offers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateEventsRoute = PrivateEventsRouteImport.update({
+  id: '/private-events',
+  path: '/private-events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReservationsRoute = ReservationsRouteImport.update({
@@ -59,92 +91,151 @@ const StoryRoute = StoryRouteImport.update({
   path: '/story',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VisitRoute = VisitRouteImport.update({
   id: '/visit',
   path: '/visit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhatShouldIOrderRoute = WhatShouldIOrderRouteImport.update({
+  id: '/what-should-i-order',
+  path: '/what-should-i-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
+  '/mood-menu': typeof MoodMenuRoute
   '/offers': typeof OffersRoute
+  '/privacy': typeof PrivacyRoute
+  '/private-events': typeof PrivateEventsRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
+  '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
+  '/what-should-i-order': typeof WhatShouldIOrderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
+  '/mood-menu': typeof MoodMenuRoute
   '/offers': typeof OffersRoute
+  '/privacy': typeof PrivacyRoute
+  '/private-events': typeof PrivateEventsRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
+  '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
+  '/what-should-i-order': typeof WhatShouldIOrderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
+  '/mood-menu': typeof MoodMenuRoute
   '/offers': typeof OffersRoute
+  '/privacy': typeof PrivacyRoute
+  '/private-events': typeof PrivateEventsRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
+  '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
+  '/what-should-i-order': typeof WhatShouldIOrderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contact'
     | '/events'
     | '/experience'
+    | '/faq'
     | '/gallery'
     | '/menu'
+    | '/mood-menu'
     | '/offers'
+    | '/privacy'
+    | '/private-events'
     | '/reservations'
     | '/story'
+    | '/terms'
     | '/visit'
+    | '/what-should-i-order'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contact'
     | '/events'
     | '/experience'
+    | '/faq'
     | '/gallery'
     | '/menu'
+    | '/mood-menu'
     | '/offers'
+    | '/privacy'
+    | '/private-events'
     | '/reservations'
     | '/story'
+    | '/terms'
     | '/visit'
+    | '/what-should-i-order'
   id:
     | '__root__'
     | '/'
+    | '/contact'
     | '/events'
     | '/experience'
+    | '/faq'
     | '/gallery'
     | '/menu'
+    | '/mood-menu'
     | '/offers'
+    | '/privacy'
+    | '/private-events'
     | '/reservations'
     | '/story'
+    | '/terms'
     | '/visit'
+    | '/what-should-i-order'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   ExperienceRoute: typeof ExperienceRoute
+  FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   MenuRoute: typeof MenuRoute
+  MoodMenuRoute: typeof MoodMenuRoute
   OffersRoute: typeof OffersRoute
+  PrivacyRoute: typeof PrivacyRoute
+  PrivateEventsRoute: typeof PrivateEventsRoute
   ReservationsRoute: typeof ReservationsRoute
   StoryRoute: typeof StoryRoute
+  TermsRoute: typeof TermsRoute
   VisitRoute: typeof VisitRoute
+  WhatShouldIOrderRoute: typeof WhatShouldIOrderRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -154,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/events': {
@@ -170,6 +268,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperienceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -184,11 +289,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mood-menu': {
+      id: '/mood-menu'
+      path: '/mood-menu'
+      fullPath: '/mood-menu'
+      preLoaderRoute: typeof MoodMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/offers': {
       id: '/offers'
       path: '/offers'
       fullPath: '/offers'
       preLoaderRoute: typeof OffersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/private-events': {
+      id: '/private-events'
+      path: '/private-events'
+      fullPath: '/private-events'
+      preLoaderRoute: typeof PrivateEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reservations': {
@@ -205,6 +331,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/visit': {
       id: '/visit'
       path: '/visit'
@@ -212,19 +345,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/what-should-i-order': {
+      id: '/what-should-i-order'
+      path: '/what-should-i-order'
+      fullPath: '/what-should-i-order'
+      preLoaderRoute: typeof WhatShouldIOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   ExperienceRoute: ExperienceRoute,
+  FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   MenuRoute: MenuRoute,
+  MoodMenuRoute: MoodMenuRoute,
   OffersRoute: OffersRoute,
+  PrivacyRoute: PrivacyRoute,
+  PrivateEventsRoute: PrivateEventsRoute,
   ReservationsRoute: ReservationsRoute,
   StoryRoute: StoryRoute,
+  TermsRoute: TermsRoute,
   VisitRoute: VisitRoute,
+  WhatShouldIOrderRoute: WhatShouldIOrderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
