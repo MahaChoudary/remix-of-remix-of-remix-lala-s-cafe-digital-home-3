@@ -10,12 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as OffersRouteImport } from './routes/offers'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PrivateEventsRouteImport } from './routes/private-events'
 import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as StoryRouteImport } from './routes/story'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -26,6 +29,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
@@ -34,6 +42,11 @@ const EventsRoute = EventsRouteImport.update({
 const ExperienceRoute = ExperienceRouteImport.update({
   id: '/experience',
   path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -54,6 +67,11 @@ const OffersRoute = OffersRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivateEventsRoute = PrivateEventsRouteImport.update({
+  id: '/private-events',
+  path: '/private-events',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReservationsRoute = ReservationsRouteImport.update({
@@ -79,12 +97,15 @@ const VisitRoute = VisitRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
   '/privacy': typeof PrivacyRoute
+  '/private-events': typeof PrivateEventsRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
   '/terms': typeof TermsRoute
@@ -92,12 +113,15 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
   '/privacy': typeof PrivacyRoute
+  '/private-events': typeof PrivateEventsRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
   '/terms': typeof TermsRoute
@@ -106,12 +130,15 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
   '/experience': typeof ExperienceRoute
+  '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
   '/privacy': typeof PrivacyRoute
+  '/private-events': typeof PrivateEventsRoute
   '/reservations': typeof ReservationsRoute
   '/story': typeof StoryRoute
   '/terms': typeof TermsRoute
@@ -121,12 +148,15 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contact'
     | '/events'
     | '/experience'
+    | '/faq'
     | '/gallery'
     | '/menu'
     | '/offers'
     | '/privacy'
+    | '/private-events'
     | '/reservations'
     | '/story'
     | '/terms'
@@ -134,12 +164,15 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contact'
     | '/events'
     | '/experience'
+    | '/faq'
     | '/gallery'
     | '/menu'
     | '/offers'
     | '/privacy'
+    | '/private-events'
     | '/reservations'
     | '/story'
     | '/terms'
@@ -147,12 +180,15 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/contact'
     | '/events'
     | '/experience'
+    | '/faq'
     | '/gallery'
     | '/menu'
     | '/offers'
     | '/privacy'
+    | '/private-events'
     | '/reservations'
     | '/story'
     | '/terms'
@@ -161,12 +197,15 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
   ExperienceRoute: typeof ExperienceRoute
+  FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   MenuRoute: typeof MenuRoute
   OffersRoute: typeof OffersRoute
   PrivacyRoute: typeof PrivacyRoute
+  PrivateEventsRoute: typeof PrivateEventsRoute
   ReservationsRoute: typeof ReservationsRoute
   StoryRoute: typeof StoryRoute
   TermsRoute: typeof TermsRoute
@@ -182,6 +221,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events': {
       id: '/events'
       path: '/events'
@@ -194,6 +240,13 @@ declare module '@tanstack/react-router' {
       path: '/experience'
       fullPath: '/experience'
       preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -222,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/private-events': {
+      id: '/private-events'
+      path: '/private-events'
+      fullPath: '/private-events'
+      preLoaderRoute: typeof PrivateEventsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reservations': {
@@ -257,12 +317,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
   ExperienceRoute: ExperienceRoute,
+  FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   MenuRoute: MenuRoute,
   OffersRoute: OffersRoute,
   PrivacyRoute: PrivacyRoute,
+  PrivateEventsRoute: PrivateEventsRoute,
   ReservationsRoute: ReservationsRoute,
   StoryRoute: StoryRoute,
   TermsRoute: TermsRoute,
