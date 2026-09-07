@@ -16,6 +16,7 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as MoodMenuRouteImport } from './routes/mood-menu'
 import { Route as OffersRouteImport } from './routes/offers'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PrivateEventsRouteImport } from './routes/private-events'
@@ -23,6 +24,7 @@ import { Route as ReservationsRouteImport } from './routes/reservations'
 import { Route as StoryRouteImport } from './routes/story'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as VisitRouteImport } from './routes/visit'
+import { Route as WhatShouldIOrderRouteImport } from './routes/what-should-i-order'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -57,6 +59,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoodMenuRoute = MoodMenuRouteImport.update({
+  id: '/mood-menu',
+  path: '/mood-menu',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OffersRoute = OffersRouteImport.update({
@@ -94,6 +101,11 @@ const VisitRoute = VisitRouteImport.update({
   path: '/visit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhatShouldIOrderRoute = WhatShouldIOrderRouteImport.update({
+  id: '/what-should-i-order',
+  path: '/what-should-i-order',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
+  '/mood-menu': typeof MoodMenuRoute
   '/offers': typeof OffersRoute
   '/privacy': typeof PrivacyRoute
   '/private-events': typeof PrivateEventsRoute
@@ -110,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/story': typeof StoryRoute
   '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
+  '/what-should-i-order': typeof WhatShouldIOrderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -119,6 +133,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
+  '/mood-menu': typeof MoodMenuRoute
   '/offers': typeof OffersRoute
   '/privacy': typeof PrivacyRoute
   '/private-events': typeof PrivateEventsRoute
@@ -126,6 +141,7 @@ export interface FileRoutesByTo {
   '/story': typeof StoryRoute
   '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
+  '/what-should-i-order': typeof WhatShouldIOrderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -136,6 +152,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
+  '/mood-menu': typeof MoodMenuRoute
   '/offers': typeof OffersRoute
   '/privacy': typeof PrivacyRoute
   '/private-events': typeof PrivateEventsRoute
@@ -143,6 +160,7 @@ export interface FileRoutesById {
   '/story': typeof StoryRoute
   '/terms': typeof TermsRoute
   '/visit': typeof VisitRoute
+  '/what-should-i-order': typeof WhatShouldIOrderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -154,6 +172,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/menu'
+    | '/mood-menu'
     | '/offers'
     | '/privacy'
     | '/private-events'
@@ -161,6 +180,7 @@ export interface FileRouteTypes {
     | '/story'
     | '/terms'
     | '/visit'
+    | '/what-should-i-order'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -170,6 +190,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/menu'
+    | '/mood-menu'
     | '/offers'
     | '/privacy'
     | '/private-events'
@@ -177,6 +198,7 @@ export interface FileRouteTypes {
     | '/story'
     | '/terms'
     | '/visit'
+    | '/what-should-i-order'
   id:
     | '__root__'
     | '/'
@@ -186,6 +208,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/menu'
+    | '/mood-menu'
     | '/offers'
     | '/privacy'
     | '/private-events'
@@ -193,6 +216,7 @@ export interface FileRouteTypes {
     | '/story'
     | '/terms'
     | '/visit'
+    | '/what-should-i-order'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -203,6 +227,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   MenuRoute: typeof MenuRoute
+  MoodMenuRoute: typeof MoodMenuRoute
   OffersRoute: typeof OffersRoute
   PrivacyRoute: typeof PrivacyRoute
   PrivateEventsRoute: typeof PrivateEventsRoute
@@ -210,6 +235,7 @@ export interface RootRouteChildren {
   StoryRoute: typeof StoryRoute
   TermsRoute: typeof TermsRoute
   VisitRoute: typeof VisitRoute
+  WhatShouldIOrderRoute: typeof WhatShouldIOrderRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -263,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mood-menu': {
+      id: '/mood-menu'
+      path: '/mood-menu'
+      fullPath: '/mood-menu'
+      preLoaderRoute: typeof MoodMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/offers': {
       id: '/offers'
       path: '/offers'
@@ -312,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/what-should-i-order': {
+      id: '/what-should-i-order'
+      path: '/what-should-i-order'
+      fullPath: '/what-should-i-order'
+      preLoaderRoute: typeof WhatShouldIOrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -323,6 +363,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   MenuRoute: MenuRoute,
+  MoodMenuRoute: MoodMenuRoute,
   OffersRoute: OffersRoute,
   PrivacyRoute: PrivacyRoute,
   PrivateEventsRoute: PrivateEventsRoute,
@@ -330,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   StoryRoute: StoryRoute,
   TermsRoute: TermsRoute,
   VisitRoute: VisitRoute,
+  WhatShouldIOrderRoute: WhatShouldIOrderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
