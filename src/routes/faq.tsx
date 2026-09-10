@@ -5,10 +5,14 @@ import { ChevronDown } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { luxButton } from "@/components/ui-kit/Button";
-import { faqs, photos } from "@/lib/site-content";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { photos } from "@/lib/site-content";
+import { publicContentQuery } from "@/lib/content";
+import type { PublicContent } from "@/lib/public-content.functions";
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
+  head: ({ loaderData }: { loaderData?: PublicContent }) => ({
     meta: [
       { title: "FAQ — Lala's Cafe Daska" },
       {
@@ -27,7 +31,7 @@ export const Route = createFileRoute("/faq")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
+          mainEntity: (loaderData?.faqs ?? []).map((f) => ({
             "@type": "Question",
             name: f.question,
             acceptedAnswer: { "@type": "Answer", text: f.answer },
@@ -40,7 +44,9 @@ export const Route = createFileRoute("/faq")({
 });
 
 function FaqPage() {
-  const [open, setOpen] = useState<string | null>(faqs[0]?.id ?? null);
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const faqs = content.faqs;
+  const [open, setOpen] = useState<string | null>(null);
   const reduced = useReducedMotion();
 
   return (
