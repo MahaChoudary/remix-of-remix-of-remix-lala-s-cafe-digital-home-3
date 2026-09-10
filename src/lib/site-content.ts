@@ -1,4 +1,5 @@
 import type {
+  Faq,
   CafeEvent,
   GalleryImage,
   MenuCategory,
@@ -292,12 +293,7 @@ export const offers: Offer[] = [
   },
 ];
 
-export interface Faq {
-  id: string;
-  question: string;
-  answer: string;
-  sortOrder: number;
-}
+export type { Faq } from "./types";
 
 /** Answers drawn only from what the cafe has confirmed. */
 export const faqs: Faq[] = [

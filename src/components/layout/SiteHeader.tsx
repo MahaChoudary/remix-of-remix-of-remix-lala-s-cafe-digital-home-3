@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { luxButton } from "@/components/ui-kit/Button";
-import { siteSettings } from "@/lib/site-content";
+import { photos } from "@/lib/site-content";
+import { useSiteSettings } from "@/lib/content";
 
 const primaryLinks = [
   { to: "/menu", label: "Menu" },
@@ -24,6 +25,7 @@ const secondaryLinks = [
 ] as const;
 
 export function SiteHeader() {
+  const siteSettings = useSiteSettings();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -54,9 +56,14 @@ export function SiteHeader() {
         className="container-lux flex h-[72px] items-center justify-between gap-4"
       >
         <Link to="/" className="flex items-center gap-3" aria-label="Lala's Cafe home">
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-primary font-display text-lg font-bold text-primary-foreground">
-            L
-          </span>
+          <img
+            src={siteSettings.logoUrl || photos.logo}
+            alt=""
+            aria-hidden="true"
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-full object-cover"
+          />
           <span className="font-display text-lg leading-none tracking-tight">
             {siteSettings.cafeName}
             <span className="mt-1 block text-[0.6rem] font-sans tracking-[0.28em] text-muted-foreground uppercase">

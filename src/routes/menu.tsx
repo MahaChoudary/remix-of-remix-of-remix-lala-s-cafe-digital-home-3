@@ -3,7 +3,8 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
-import { dataSource } from "@/lib/data-source";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
 import { photos } from "@/lib/site-content";
 import type { MenuItem } from "@/lib/types";
 
@@ -23,12 +24,14 @@ export const Route = createFileRoute("/menu")({
       },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: MenuPage,
 });
 
 function MenuPage() {
-  const categories = dataSource.getMenuCategories();
-  const items = dataSource.getMenuItems();
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const categories = content.categories;
+  const items = content.items;
   const [active, setActive] = useState<string>("all");
   const [query, setQuery] = useState("");
 
@@ -45,7 +48,7 @@ function MenuPage() {
     .map((c) => ({ category: c, items: visible.filter((i) => i.categoryId === c.id) }))
     .filter((g) => g.items.length > 0);
 
-  const awaitingPrices = items.some((i) => i.isPlaceholder);
+  const awaitingPrices = items.length === 0;
 
   return (
     <>
@@ -60,9 +63,8 @@ function MenuPage() {
       <section className="container-lux py-16">
         {awaitingPrices && (
           <Reveal className="mb-10 rounded-2xl border border-primary/35 bg-primary/5 p-5 text-sm leading-relaxed text-foreground/85">
-            Our full dish list and prices are being loaded in by the Lala's team. Until then, call
-            or WhatsApp us on the number in the footer for today's items and rates — we'd rather
-            tell you the truth than print a price we can't honour.
+            The menu isn't showing right now. Call or WhatsApp us on the number in the footer and
+            we'll tell you exactly what's cooking today.
           </Reveal>
         )}
 

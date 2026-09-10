@@ -107,8 +107,18 @@ export interface SiteSettings {
   addressLine?: string;
   city: string;
   mapsUrl?: string;
+  logoUrl?: string;
+  complaintPhone?: string;
+  orderPhones?: string[];
   hours: OpeningHours[];
   socials: { label: string; url: string }[];
+}
+
+export interface Faq {
+  id: ID;
+  question: string;
+  answer: string;
+  sortOrder: number;
 }
 
 export type SubmissionResult =

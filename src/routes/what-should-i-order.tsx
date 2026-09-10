@@ -5,7 +5,8 @@ import { RotateCcw } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { luxButton, LuxButton } from "@/components/ui-kit/Button";
-import { dataSource } from "@/lib/data-source";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
 import { photos } from "@/lib/site-content";
 import type { MenuItem, MoodTag } from "@/lib/types";
 
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/what-should-i-order")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: OrderHelperPage,
 });
 
@@ -104,8 +106,9 @@ function OrderHelperPage() {
   const [picks, setPicks] = useState<Answer[]>([]);
   const reduced = useReducedMotion();
 
-  const categories = useMemo(() => dataSource.getMenuCategories(), []);
-  const items = useMemo(() => dataSource.getMenuItems().filter((i) => i.isAvailable), []);
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const categories = content.categories;
+  const items = useMemo(() => content.items.filter((i) => i.isAvailable), [content.items]);
 
   const done = picks.length === questions.length;
 

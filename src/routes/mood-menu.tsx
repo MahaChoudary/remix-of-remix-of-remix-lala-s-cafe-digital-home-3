@@ -5,7 +5,8 @@ import { Flame, HeartHandshake, Leaf, IceCreamCone, Drumstick } from "lucide-rea
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { luxButton } from "@/components/ui-kit/Button";
-import { dataSource } from "@/lib/data-source";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
 import { photos } from "@/lib/site-content";
 import type { MoodTag } from "@/lib/types";
 
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/mood-menu")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: MoodMenuPage,
 });
 
@@ -46,8 +48,9 @@ function MoodMenuPage() {
   const [mood, setMood] = useState<MoodTag | null>(null);
   const reduced = useReducedMotion();
 
-  const categories = useMemo(() => dataSource.getMenuCategories(), []);
-  const items = useMemo(() => dataSource.getMenuItems(), []);
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const categories = content.categories;
+  const items = content.items;
 
   const matches = useMemo(() => {
     if (!mood) return [];

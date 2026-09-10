@@ -1,7 +1,9 @@
 import { MessageCircle, Phone } from "lucide-react";
-import { siteSettings } from "@/lib/site-content";
+import { useSiteSettings } from "@/lib/content";
 
 export function FloatingActions() {
+  const siteSettings = useSiteSettings();
+
   return (
     <div className="fixed bottom-5 right-5 z-40 flex flex-col gap-3">
       <a
