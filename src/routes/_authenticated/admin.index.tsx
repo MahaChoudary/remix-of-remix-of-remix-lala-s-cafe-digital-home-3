@@ -154,7 +154,7 @@ function SectionPanel({ section }: { section: Section }) {
         )}
         {(data ?? []).map((row) => (
           <li
-            key={String(row.id)}
+            key={String(row['id'])}
             className="surface-panel flex flex-wrap items-center justify-between gap-4 rounded-2xl p-5"
           >
             <div className="min-w-0">
@@ -180,7 +180,7 @@ function SectionPanel({ section }: { section: Section }) {
               <LuxButton
                 variant="ghost"
                 onClick={() => {
-                  if (confirm("Delete this permanently?")) remove.mutate(String(row.id));
+                  if (confirm("Delete this permanently?")) remove.mutate(String(row['id']));
                 }}
               >
                 Delete
@@ -206,7 +206,7 @@ function RowEditor({
   const [draft, setDraft] = useState<Row>({ ...row });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const isNew = row.id === undefined;
+  const isNew = row['id'] === undefined;
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -218,7 +218,7 @@ function RowEditor({
         if (f.key === "id" && !isNew) continue;
         payload[f.key] = draft[f.key] ?? defaultFor(f);
       }
-      await saveRow(section, payload, isNew ? null : String(row.id));
+      await saveRow(section, payload, isNew ? null : String(row['id']));
       qc.invalidateQueries({ queryKey: ["admin", section.id] });
       qc.invalidateQueries({ queryKey: ["public-content"] });
       onClose();

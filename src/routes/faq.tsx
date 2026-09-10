@@ -12,7 +12,7 @@ import type { PublicContent } from "@/lib/public-content.functions";
 
 export const Route = createFileRoute("/faq")({
   loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
-  head: ({ loaderData }: { loaderData?: PublicContent }) => ({
+  head: (ctx) => ({
     meta: [
       { title: "FAQ — Lala's Cafe Daska" },
       {
@@ -31,7 +31,9 @@ export const Route = createFileRoute("/faq")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: (loaderData?.faqs ?? []).map((f) => ({
+          mainEntity: (
+            ((ctx as { loaderData?: PublicContent }).loaderData?.faqs ?? [])
+          ).map((f) => ({
             "@type": "Question",
             name: f.question,
             acceptedAnswer: { "@type": "Answer", text: f.answer },
