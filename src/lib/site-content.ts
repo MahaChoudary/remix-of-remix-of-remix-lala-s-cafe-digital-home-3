@@ -1,4 +1,5 @@
 import type {
+  Faq,
   CafeEvent,
   GalleryImage,
   MenuCategory,
