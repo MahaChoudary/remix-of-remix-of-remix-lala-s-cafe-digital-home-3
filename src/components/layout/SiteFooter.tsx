@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, Clock } from "lucide-react";
-import { siteSettings } from "@/lib/site-content";
+import { useSiteSettings } from "@/lib/content";
 
 const columns = [
   {
@@ -33,6 +33,7 @@ const columns = [
 ] as const;
 
 export function SiteFooter() {
+  const siteSettings = useSiteSettings();
   const socials = siteSettings.socials.filter((s) => s.url);
 
   return (

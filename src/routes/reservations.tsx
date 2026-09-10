@@ -28,6 +28,7 @@ export const Route = createFileRoute("/reservations")({
 });
 
 function ReservationsPage() {
+  const [status, setStatus] = useState<"idle" | "sending">("idle");
   const [sent, setSent] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,7 +49,9 @@ function ReservationsPage() {
       setError("Please fill in your name, phone, date and time.");
       return;
     }
+    setStatus("sending");
     const result = await dataSource.submitReservation(data);
+    setStatus("idle");
     if (result.ok) {
       setSent("Request received — we'll confirm shortly.");
       return;
@@ -115,7 +118,9 @@ function ReservationsPage() {
               )}
               {sent && <p className="text-sm text-primary">{sent}</p>}
               <div>
-                <LuxButton type="submit">Send request</LuxButton>
+                <LuxButton type="submit" disabled={status === "sending"}>
+                  {status === "sending" ? "Sending…" : "Send request"}
+                </LuxButton>
               </div>
             </form>
           </Reveal>
