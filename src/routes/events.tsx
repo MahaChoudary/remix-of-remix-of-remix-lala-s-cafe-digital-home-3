@@ -3,8 +3,10 @@ import { CalendarDays } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { luxButton } from "@/components/ui-kit/Button";
-import { dataSource } from "@/lib/data-source";
-import { photos, siteSettings } from "@/lib/site-content";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
+import { photos } from "@/lib/site-content";
+import { useSiteSettings } from "@/lib/content";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -22,11 +24,14 @@ export const Route = createFileRoute("/events")({
       },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: EventsPage,
 });
 
 function EventsPage() {
-  const events = dataSource.getEvents();
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const events = content.events;
+  const siteSettings = useSiteSettings();
 
   return (
     <>

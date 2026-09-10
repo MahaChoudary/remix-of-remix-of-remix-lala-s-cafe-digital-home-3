@@ -4,8 +4,10 @@ import { useRef } from "react";
 import { ArrowRight, Clock, MapPin, Phone, Sparkles } from "lucide-react";
 import { luxButton } from "@/components/ui-kit/Button";
 import { MaskImage, Reveal } from "@/components/motion/Reveal";
-import { dataSource } from "@/lib/data-source";
-import { photos, siteSettings } from "@/lib/site-content";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
+import { photos } from "@/lib/site-content";
+import { useSiteSettings } from "@/lib/content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,11 +26,14 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: Home,
 });
 
 function Home() {
-  const featured = dataSource.getFeaturedMenuItems();
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const siteSettings = useSiteSettings();
+  const featured = content.items.filter((i) => i.isFeatured && i.isAvailable);
   const reduced = useReducedMotion();
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });

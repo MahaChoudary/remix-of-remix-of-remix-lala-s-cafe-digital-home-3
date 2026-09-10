@@ -4,7 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
-import { dataSource } from "@/lib/data-source";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
 import { photos } from "@/lib/site-content";
 
 export const Route = createFileRoute("/gallery")({
@@ -23,11 +24,13 @@ export const Route = createFileRoute("/gallery")({
       },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: GalleryPage,
 });
 
 function GalleryPage() {
-  const images = dataSource.getGalleryImages();
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const images = content.gallery;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const close = useCallback(() => setOpenIndex(null), []);

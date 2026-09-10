@@ -3,8 +3,10 @@ import { Tag } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { luxButton } from "@/components/ui-kit/Button";
-import { dataSource } from "@/lib/data-source";
-import { photos, siteSettings } from "@/lib/site-content";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { publicContentQuery } from "@/lib/content";
+import { photos } from "@/lib/site-content";
+import { useSiteSettings } from "@/lib/content";
 
 export const Route = createFileRoute("/offers")({
   head: () => ({
@@ -18,11 +20,14 @@ export const Route = createFileRoute("/offers")({
       { property: "og:description", content: "Current deals and promotions at Lala's Cafe." },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicContentQuery),
   component: OffersPage,
 });
 
 function OffersPage() {
-  const offers = dataSource.getOffers();
+  const { data: content } = useSuspenseQuery(publicContentQuery);
+  const offers = content.offers;
+  const siteSettings = useSiteSettings();
 
   return (
     <>
