@@ -5,14 +5,8 @@ import { Field, fieldClass } from "@/components/forms/Field";
 import { supabase } from "@/integrations/supabase/client";
 import { uploadImage } from "@/lib/admin";
 
-interface HourRow {
-  label: string;
-  value: string;
-}
-interface SocialRow {
-  label: string;
-  url: string;
-}
+type HourRow = Record<string, string>;
+type SocialRow = Record<string, string>;
 
 interface SettingsForm {
   cafe_name: string;
@@ -88,7 +82,7 @@ export function SettingsPanel() {
     mutationFn: async () => {
       const { error } = await supabase
         .from("site_settings")
-        .upsert({ id: "default", ...form });
+        .upsert({ id: "default", ...form } as never);
       if (error) throw error;
     },
     onSuccess: () => {
